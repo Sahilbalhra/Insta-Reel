@@ -1,0 +1,65 @@
+.login-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7rem;
+    text-align: center;
+  
+  }
+  .login-card {
+    width: 20rem;
+    /* height: 25rem; */
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
+  .bottom-card {
+    width: 20rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
+  .carbg{
+    background: url('../assets/carbg.jpg');
+    background-size: cover;
+    height: 590px;
+    width: 441px;
+    position: relative;
+  }
+  .car{
+    position: absolute;
+    height: 423px;
+    width: 241px;
+    top:23px;
+    left: 146px;
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .login-card {
+      width: 100%;
+    }
+    .bottom-card {
+      width: 100%;
+    }
+    .carbg{
+      display: none;
+    }
+    
+  }
+  @media only screen and (max-width: 700px) { 
+    .carbg{
+      display: none;
+    }
+  }
+  
+  @media only screen and (max-width: 800px) { 
+    .login-card {
+      width: 15rem;
+    }
+    .bottom-card {
+      width: 15rem;
+    }
+  }
+  
