@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -9,8 +9,52 @@ import bg1 from "../../assets/bg1.jpg";
 import bg2 from "../../assets/bg2.jpg";
 import bg3 from "../../assets/bg3.jpg";
 import bg4 from "../../assets/bg4.jpg";
+import { AuthContext } from "../../context/auth";
+// providing routes
+import { useRouter } from "next/router";
 
 function index() {
+  //providing routes
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  // getting login details and user
+  const { login, user } = useContext(AuthContext);
+
+  //on click function
+
+  const handleClick = async () => {
+    // console.log(email+" "+password);
+    try {
+      setLoading(true);
+      setError("");
+      await login(email, password);
+      // console.log("User loged in");
+    } catch (err) {
+      setError(err.message);
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }
+  };
+
+  useEffect(() => {
+    //checking the auth user
+    console.log(user);
+    if (user) {
+      //go to feed page
+      router.push("/");
+    } else {
+      console.log("User not logged in");
+    }
+  }, [user]);
+
   return (
     <div className="login-container">
       {/* insta phones images */}
@@ -44,6 +88,10 @@ function index() {
             fullWidth
             label="Email"
             variant="outlined"
+            //initial value in pwd
+            value={email}
+            //getting the change value in the field
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             size="small"
@@ -53,13 +101,23 @@ function index() {
             label="Password"
             type="password"
             variant="outlined"
+            //initial value in pwd
+            value={password}
+            //getting the change value in the field
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <div style={{ color: "red" }}>Error</div>
+
+          {/* condition on error if error then show else do not show */}
+          {error != "" && <div style={{ color: "red" }}>{error}</div>}
+
           <Button
             variant="contained"
             fullWidth
             component="span"
             style={{ marginTop: "1rem" }}
+            //onclick function
+            onClick={handleClick}
+            disabled={loading}
           >
             LogIn
           </Button>
