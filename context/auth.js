@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 
 // function that stand btw upto a perticular time
@@ -26,21 +30,26 @@ function AuthWrapper({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  function logout(){
-      //sign out the user
-      return signOut(auth);
+  function logout() {
+    //sign out the user
+    return signOut(auth);
     // signOut(auth).then(() => {
     //     // Sign-out successful.
     //   }).catch((error) => {
     //     // An error happened.
     //   });
   }
+
+  function forgot(email) {
+    return sendPasswordResetEmail(auth, email);
+  }
+
   //only user under store can accees the data
-  
   const store = {
     login,
     user,
-    logout
+    logout,
+    forgot
   };
   return (
     <AuthContext.Provider value={store}>

@@ -2,17 +2,16 @@ import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import insta from "../../assets/insta.jpg";
+import insta from "../assets/insta.jpg";
 import { Carousel } from "react-responsive-carousel";
 
-import bg1 from "../../assets/bg1.jpg";
-import bg2 from "../../assets/bg2.jpg";
-import bg3 from "../../assets/bg3.jpg";
-import bg4 from "../../assets/bg4.jpg";
-import { AuthContext } from "../../context/auth";
+import bg1 from "../assets/bg1.jpg";
+import bg2 from "../assets/bg2.jpg";
+import bg3 from "../assets/bg3.jpg";
+import bg4 from "../assets/bg4.jpg";
+import { AuthContext } from "../context/auth";
 // providing routes
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 function index() {
   //providing routes
@@ -22,7 +21,7 @@ function index() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   // getting login details and user
-  const { login, user } = useContext(AuthContext);
+  const { forgot, user } = useContext(AuthContext);
 
   //on click function
 
@@ -31,13 +30,14 @@ function index() {
     try {
       setLoading(true);
       setError("");
-      await login(email, password);
-      // console.log("User loged in");
+      await forgot(email);
+      // console.log("Email to the user");
+      router.push("/login");
     } catch (err) {
       setError(err.message);
       setTimeout(() => {
         setError("");
-      }, 5000);
+      }, 2000);
     }
     setLoading(false);
   };
@@ -91,7 +91,7 @@ function index() {
             //getting the change value in the field
             onChange={(e) => setEmail(e.target.value)}
           />
-          <TextField
+          {/* <TextField
             size="small"
             margin="dense"
             id="outlined-basic"
@@ -103,7 +103,7 @@ function index() {
             value={password}
             //getting the change value in the field
             onChange={(e) => setPassword(e.target.value)}
-          />
+          /> */}
 
           {/* condition on error if error then show else do not show */}
           {error != "" && <div style={{ color: "red" }}>{error}</div>}
@@ -117,14 +117,14 @@ function index() {
             onClick={handleClick}
             disabled={loading}
           >
-            LogIn
+            Send Email
           </Button>
-          <div style={{ color: "blue", marginTop: "0.5rem" }}>
+          {/* <div style={{ color: "blue", marginTop: "0.5rem" }}>
             Forgot Password ?
-          </div>
+          </div> */}
         </div>
         <div className="bottom-card">
-          Don't Have an Account ? <Link href="/"><span style={{ color: "blue" }}>Sign Up</span></Link>
+          Don't Have an Account ? <span style={{ color: "blue" }}>Sign Up</span>{" "}
         </div>
       </div>
     </div>
