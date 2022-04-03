@@ -131,7 +131,10 @@ function index() {
           </div> */}
         </div>
         <div className="bottom-card">
-          Don't Have an Account ? <Link href="/signup"><span style={{ color: "blue" }}>Sign Up</span></Link>
+          Don't Have an Account ?{" "}
+          <Link href="/signup">
+            <span style={{ color: "blue" }}>Sign Up</span>
+          </Link>
         </div>
       </div>
     </div>

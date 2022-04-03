@@ -4,6 +4,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -44,12 +45,16 @@ function AuthWrapper({ children }) {
     return sendPasswordResetEmail(auth, email);
   }
 
+  function signup(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
+  }
   //only user under store can accees the data
   const store = {
     login,
     user,
     logout,
     forgot,
+    signup,
   };
   return (
     <AuthContext.Provider value={store}>

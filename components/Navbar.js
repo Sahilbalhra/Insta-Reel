@@ -1,31 +1,30 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-// import MenuIcon from '@mui/icons-material/Menu';
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-// import Button from '@mui/material/Button';
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import insta from "../assets/insta.jpg";
-import Image from "next/image";
-import HomeIcon from "@mui/icons-material/Home";
-import ExploreIcon from "@mui/icons-material/Explore";
-import { AuthContext } from "../context/auth";
-// import { async } from "@firebase/util";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import insta from '../assets/insta.jpg';
+import Image from 'next/image';
+import HomeIcon from '@mui/icons-material/Home';
+import ExploreIcon from '@mui/icons-material/Explore';
+import { AuthContext } from '../context/auth';
 import { Router, useRouter } from 'next/router';
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile','Logout'];
 
-// const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ["Profile", "Logout"];
 
 const Navbar = () => {
   //adding logout functionality
   const { logout } = React.useContext(AuthContext);
-  const Router = useRouter();
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -43,12 +42,12 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const handleLogout = async () => {
+  const handleLogout = async() => {
     await logout();
-    // console.log("Logged out!")
-    Router.push('/login')
-  };
+    console.log("Logged out!")
+    router.push('/login')
+  }
+  
   return (
     <AppBar position="static" color="transparent" className="navbar">
       <Container maxWidth="xl">
@@ -97,12 +96,10 @@ const Navbar = () => {
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="center">Profile</Typography>
               </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleLogout();
-                  // handleCloseNavMenu();
-                }}
-              >
+              <MenuItem onClick={()=>
+                {
+                  handleLogout()
+                }}>
                 <Typography textAlign="center">logout</Typography>
               </MenuItem>
             </Menu>
