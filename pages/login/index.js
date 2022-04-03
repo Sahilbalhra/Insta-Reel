@@ -1,9 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import insta from "../../assets/insta.jpg";
 import { Carousel } from "react-responsive-carousel";
+// import {
+//   curouselProvider,
+//   Slider,
+//   Slide,
+//   Image as Img,
+// } from "pure-react-carousel";
 
 import bg1 from "../../assets/bg1.jpg";
 import bg2 from "../../assets/bg2.jpg";
@@ -17,10 +23,10 @@ import Link from "next/link";
 function index() {
   //providing routes
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
   // getting login details and user
   const { login, user } = useContext(AuthContext);
 
@@ -120,11 +126,19 @@ function index() {
             LogIn
           </Button>
           <div style={{ color: "blue", marginTop: "0.5rem" }}>
+          <Link href="/forgotpassword">
             Forgot Password ?
+          </Link>
           </div>
+        
         </div>
         <div className="bottom-card">
-          Don't Have an Account ? <Link href="/"><span style={{ color: "blue" }}>Sign Up</span></Link>
+          Don't Have an Account ?
+          <span style={{ color: "blue" }}>
+          <Link href="/signup">
+            Sign Up
+          </Link>
+          </span>
         </div>
       </div>
     </div>

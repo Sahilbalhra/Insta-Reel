@@ -1,25 +1,32 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import insta from "../assets/insta.jpg";
+import insta from "../../assets/insta.jpg";
 import { Carousel } from "react-responsive-carousel";
+// import {
+//   curouselProvider,
+//   Slider,
+//   Slide,
+//   Image as Img,
+// } from "pure-react-carousel";
 
-import bg1 from "../assets/bg1.jpg";
-import bg2 from "../assets/bg2.jpg";
-import bg3 from "../assets/bg3.jpg";
-import bg4 from "../assets/bg4.jpg";
-import { AuthContext } from "../context/auth";
+import bg1 from "../../assets/bg1.jpg";
+import bg2 from "../../assets/bg2.jpg";
+import bg3 from "../../assets/bg3.jpg";
+import bg4 from "../../assets/bg4.jpg";
+import { AuthContext } from "../../context/auth";
 // providing routes
 import { useRouter } from "next/router";
+import { Link } from "@mui/material";
 
 function index() {
   //providing routes
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
   // getting login details and user
   const { forgot, user } = useContext(AuthContext);
 
@@ -124,7 +131,7 @@ function index() {
           </div> */}
         </div>
         <div className="bottom-card">
-          Don't Have an Account ? <span style={{ color: "blue" }}>Sign Up</span>{" "}
+          Don't Have an Account ? <Link href="/signup"><span style={{ color: "blue" }}>Sign Up</span></Link>
         </div>
       </div>
     </div>

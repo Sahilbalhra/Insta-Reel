@@ -49,7 +49,7 @@ function AuthWrapper({ children }) {
     login,
     user,
     logout,
-    forgot
+    forgot,
   };
   return (
     <AuthContext.Provider value={store}>

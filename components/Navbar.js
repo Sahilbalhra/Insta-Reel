@@ -25,7 +25,7 @@ const settings = ["Profile", "Logout"];
 const Navbar = () => {
   //adding logout functionality
   const { logout } = React.useContext(AuthContext);
-  const router = useRouter();
+  const Router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -46,8 +46,8 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await logout();
-    console.log("Logged out!")
-    router.push('/login')
+    // console.log("Logged out!")
+    Router.push('/login')
   };
   return (
     <AppBar position="static" color="transparent" className="navbar">

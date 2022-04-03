@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import insta from "../../assets/insta.jpg";
+import { Link } from "@mui/material";
 
 function index() {
   return (
@@ -52,7 +53,12 @@ function index() {
           Sign Up
         </Button>
       </div>
-      <div className="bottom-card">Already Have an Account ? <span style={{color:'blue'}}>Login</span> </div>
+      <div className="bottom-card">
+        Already Have an Account ?{" "}
+        <Link href="/login">
+          <span style={{ color: "blue" }}>Login</span>
+        </Link>
+      </div>
     </div>
   );
 }
