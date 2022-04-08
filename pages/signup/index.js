@@ -9,10 +9,9 @@ import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/auth';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import {storage } from '../../firebase'
-
 function index() {
-  //providing routes
-  const router = useRouter()
+
+    const router = useRouter()
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [name, setName] = React.useState('')
@@ -76,74 +75,34 @@ function index() {
 
 
 
-  return (
-    <div className="signup-container">
-      <div className="signup-card">
-        <Image src={insta} />
-        <TextField
-          size="small"
-          margin="dense"
-          id="outlined-basic"
-          fullWidth
-          label="User Name"
-          variant="outlined"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextField
-          size="small"
-          margin="dense"
-          id="outlined-basic"
-          fullWidth
-          label="Email"
-          variant="outlined"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          size="small"
-          margin="dense"
-          id="outlined-basic"
-          fullWidth
-          label="Password"
-          type="password"
-          variant="outlined"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button
-          variant="outlined"
-          fullWidth
-          component="label"
-          style={{ marginTop: "1rem" }}
-        >
-          <input
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          Upload
-        </Button>
-        <Button
-          variant="contained"
-          fullWidth
-          component="span"
-          style={{ marginTop: "1rem" }}
-          onClick={handleClick}
-          disabled={loading}
-        >
-          Sign Up
-        </Button>
-      </div>
-      <div className="bottom-card">
-        Already Have an Account ?{" "}
-        <Link href="/login">
-          <span style={{ color: "blue" }}>Login</span>
-        </Link>
-      </div>
-    </div>
-  );
+    return (
+        <div className="signup-container">
+            <div className='signup-card'>
+                {/* basic image use method */}
+                <Image src={insta} />
+
+                <TextField size="small" margin='dense' id="outlined-basic" fullWidth
+                    label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <TextField size="small" margin='dense' id="outlined-basic" fullWidth
+                    label="Password" type="password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <TextField size="small" margin='dense' id="outlined-basic" fullWidth
+                    label="Full Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} />
+                <Button variant="outlined" fullWidth component="label" style={{ marginTop: '1rem' }}>
+                    <input type="file" accept="image/*" style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])} />
+                    Upload
+                </Button>
+
+                <Button variant="contained" fullWidth
+                    style={{ marginTop: '1rem' }} onClick={handleClick} disabled={loading}>
+                    Sign Up
+                </Button>
+
+            </div>
+            <div className='bottom-card'>
+                Already Have an Account? <Link href="/login"><span style={{ color: 'blue' }}>Login</span></Link>
+            </div>
+        </div>
+    )
 }
 
-export default index;
+export default index
