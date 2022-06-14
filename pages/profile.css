@@ -1,0 +1,36 @@
+body {
+    margin: 0px;
+    font-family: sans-serif;
+  }
+  /* .header {
+    height: 5rem;
+    border-bottom: 2px solid black;
+  } */
+  .pimg {
+      width: 15rem;
+      height: 15rem;
+    border-radius: 50%;
+  }
+  .main {
+    display: flex;
+    height: calc(100vh - 10rem);
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .details {
+    text-align: center;
+    margin-top: 6rem;
+  }
+  .content{
+      line-height: 1.5;
+      font-size: 1.5rem;
+      color: gray;
+  }
+  .main>*{
+      height: 80%;
+      width: 40%;
+  }
+  .bold_text{
+      font-weight: bold;
+      color: black;
+  }
