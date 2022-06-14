@@ -5,18 +5,20 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
 
 export const AuthContext = React.createContext();
 
 function AuthWrapper({ children }) {
-  const [user, setUser] = React.useState("");
-  const [loading, setLoading] = React.useState(true);
+  const [user, setUser] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  //this useEffect work like as componentDidMount
   useEffect(() => {
+    //onAuthStateChanged :firebase function to check weather a user is loged in the app or not....
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      //   console.log(user);
       if (user) {
         setUser(user);
       } else {
@@ -34,10 +36,12 @@ function AuthWrapper({ children }) {
   }
 
   function logout() {
+    //firebase function to logOut.
     return signOut(auth);
   }
 
   function forgot(email) {
+    //firebase function 
     return sendPasswordResetEmail(auth, email);
   }
 

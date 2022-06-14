@@ -25,21 +25,24 @@ function index() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  //getting login and user from authWarper
   const { login, user } = useContext(AuthContext);
+  //to change the route
   const router = useRouter();
 
   useEffect(() => {
     // console.log("login aaya");
     if (user?.uid) {
-    //   console.log(user);
-    //   console.log(user == "");
-    //   console.log(user == null);
-    //   console.log("user not equal to null");
+      //   console.log(user);
+      //   console.log(user == "");
+      //   console.log(user == null);
+      //   console.log("user not equal to null");
+      //go to feed page
       router.push("/");
     } else {
       console.log("Not logged in");
     }
-  }, [user]);
+  }, [router, user]);
 
   //login btn function
   const handleClick = async () => {
@@ -50,7 +53,7 @@ function index() {
       //async function
       await login(email, password);
 
-    //   console.log("Logged in!");
+      //   console.log("Logged in!");
     } catch (err) {
       console.log(err);
       setError(err.message);
