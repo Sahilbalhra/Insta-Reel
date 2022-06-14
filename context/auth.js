@@ -22,6 +22,7 @@ function AuthWrapper({ children }) {
       if (user) {
         setUser(user);
       } else {
+        //udating the state for logout
         setUser("");
       }
     });
