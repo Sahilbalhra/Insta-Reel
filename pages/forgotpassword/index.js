@@ -16,8 +16,9 @@ import bg1 from "../../assets/bg1.jpg";
 import bg2 from "../../assets/bg2.jpg";
 import bg3 from "../../assets/bg3.jpg";
 import { Carousel } from "react-responsive-carousel";
-import { AuthContext } from "../../../context/auth";
+import { AuthContext } from "../../context/auth";
 import { useRouter } from "next/router";
+import Link from "next/link";
 function index() {
   const router = useRouter();
   const [email, setEmail] = React.useState("");
@@ -32,10 +33,11 @@ function index() {
       setLoading(true);
       setError("");
       await forgot(email);
-    //   console.log("Email Sent");
+      //   console.log("Email Sent");
+      //go to login page
       router.push("/login");
     } catch (err) {
-    //   console.log(err);
+      //   console.log(err);
       setError(err.message);
       setTimeout(() => {
         setError("");
@@ -74,7 +76,6 @@ function index() {
       <div>
         <div className="login-card">
           <Image src={insta} />
-
           <TextField
             size="small"
             margin="dense"
@@ -102,7 +103,10 @@ function index() {
           {/* <div style={{ color: 'blue', marginTop: '0.5rem' }}>Forgot Password ?</div> */}
         </div>
         <div className="bottom-card">
-          Donot Have an Account? <span style={{ color: "blue" }}>Sign Up</span>
+          Donot Have an Account?
+          <Link href="/signup">
+            <span style={{ color: "blue", cursor: "pointer" }}>Sign Up</span>
+          </Link>
         </div>
       </div>
     </div>

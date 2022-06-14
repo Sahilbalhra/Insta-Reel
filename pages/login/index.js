@@ -122,13 +122,17 @@ function index() {
             Login In
           </Button>
           <div style={{ color: "blue", marginTop: "0.5rem" }}>
-            Forgot Password ?
+            <Link href="/forgotpassword">
+              <span style={{ color: "blue", cursor: "pointer" }}>
+                Forgot Password ?
+              </span>
+            </Link>
           </div>
         </div>
         <div className="bottom-card">
           Donot Have an Account?{" "}
           <Link href="/signup">
-            <span style={{ color: "blue" }}>Sign Up</span>
+            <span style={{ color: "blue", cursor: "pointer" }}>Sign Up</span>
           </Link>
         </div>
       </div>
