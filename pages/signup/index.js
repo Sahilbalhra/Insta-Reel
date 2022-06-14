@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useContext, useEffect } from "react";
-import { Button } from "@mui/material";
+import { Button, speedDialActionClasses } from "@mui/material";
 import TextField from "@mui/material/TextField";
 // Next inbuilt Image
 import Image from "next/image";
@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../../context/auth";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 function index() {
   const router = useRouter();
   const [email, setEmail] = React.useState("");
@@ -25,7 +27,7 @@ function index() {
     try {
       setLoading(true);
       setError("");
-      //getting user 
+      //getting user
       const user = await signup(email, password);
 
       console.log("Signed Up!");
@@ -55,8 +57,16 @@ function index() {
         () => {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log("File available at", downloadURL);
+            let obj = {
+              name: name,
+              email: email,
+              uid: user.user.uid,
+              photoURL: downloadURL,
+            };
+            await setDoc(doc(db, "user", user.user.uid), obj);
+            console.log("doc added");
           });
         }
       );

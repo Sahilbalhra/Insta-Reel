@@ -1,7 +1,17 @@
 import Head from "next/head";
+import { useContext } from "react";
 import Feed from "../components/Feed";
+import { AuthContext } from "../context/auth";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+
+  const Redirect = () => {
+    const router = useRouter();
+    router.push("/login");
+    return null;
+  };
   return (
     <div>
       <Head>
@@ -12,6 +22,7 @@ export default function Home() {
           href="https://seeklogo.com/images/I/instagram-logo-A807AD378B-seeklogo.com.png"
         />
       </Head>
+      {user?.uid ? <Feed /> : <Redirect />}
       <Feed />
     </div>
   );

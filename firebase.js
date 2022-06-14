@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,12 +13,13 @@ const firebaseConfig = {
   projectId: "next-reels",
   storageBucket: "next-reels.appspot.com",
   messagingSenderId: "150609612898",
-  appId: "1:150609612898:web:6689089ef18ed09b2bc13b"
+  appId: "1:150609612898:web:6689089ef18ed09b2bc13b",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore();
 const storage = getStorage();
-export { auth, storage };
+export { auth, storage, db };
 export default app;
