@@ -46,6 +46,7 @@ function AuthWrapper({ children }) {
   }
 
   function signup(email, password) {
+    //firebase function to signup
     return createUserWithEmailAndPassword(auth, email, password);
   }
 

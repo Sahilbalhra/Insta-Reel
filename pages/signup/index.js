@@ -19,15 +19,18 @@ function index() {
   const [file, setFile] = React.useState(null);
   const [error, setError] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-
   const { signup, user } = useContext(AuthContext);
 
   const handleClick = async () => {
     try {
       setLoading(true);
       setError("");
+      //getting user 
       const user = await signup(email, password);
+
       console.log("Signed Up!");
+      //all firebase upload file function see documentation
+      //location to store data
       const storageRef = ref(storage, `${user.uid}/Profile`);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -80,7 +83,6 @@ function index() {
       <div className="signup-card">
         {/* basic image use method */}
         <Image src={insta} />
-
         <TextField
           size="small"
           margin="dense"
@@ -137,7 +139,7 @@ function index() {
           Sign Up
         </Button>
       </div>
-      <div className="signup-card" style={{marginTop:"1rem"}}>
+      <div className="signup-card" style={{ marginTop: "1rem" }}>
         Already Have an Account?{" "}
         <Link href="/login">
           <span style={{ color: "blue", cursor: "pointer" }}>Login</span>
