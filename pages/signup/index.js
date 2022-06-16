@@ -13,7 +13,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-function index() {
+function Index() {
   const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -67,6 +67,7 @@ function index() {
               email: email,
               uid: user.user.uid,
               photoURL: downloadURL,
+              posts:[],
             };
             await setDoc(doc(db, "users", user.user.uid), obj);
             console.log("doc added");
@@ -161,4 +162,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

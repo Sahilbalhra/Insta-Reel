@@ -19,7 +19,7 @@ import { Carousel } from "react-responsive-carousel";
 import { AuthContext } from "../../context/auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
-function index() {
+function Index() {
   const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -103,8 +103,8 @@ function index() {
           {/* <div style={{ color: 'blue', marginTop: '0.5rem' }}>Forgot Password ?</div> */}
         </div>
         <div className="bottom-card">
-          Donot Have an Account?
-          <Link href="/signup">
+          Don&apos;t Have an Account?
+          <Link href="/signup" passHref>
             <span style={{ color: "blue", cursor: "pointer" }}>Sign Up</span>
           </Link>
         </div>
@@ -113,4 +113,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
