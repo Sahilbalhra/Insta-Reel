@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 const Index = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { user } = useContext(AuthContext);
+  
 
   const Redirect = () => {
     const router = useRouter();
     router.push("/login");
     return null;
   };
-  return <>{user!=null ? <ProfileComp /> : <Redirect />}</>;
+  return <>{user != null ? <ProfileComp /> : <Redirect />}</>;
 };
 
 export default Index;

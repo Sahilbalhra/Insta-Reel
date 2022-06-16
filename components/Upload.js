@@ -93,6 +93,7 @@ function Upload({ userData }) {
       }
     );
     setLoading(false);
+    setProgress(0);
   };
 
   return (
