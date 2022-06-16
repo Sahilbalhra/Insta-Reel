@@ -29,11 +29,11 @@ function index() {
       setError("");
       //getting user
       const user = await signup(email, password);
-
+ 
       console.log("Signed Up!");
       //all firebase upload file function see documentation
       //location to store data
-      const storageRef = ref(storage, `${user.uid}/Profile`);
+      const storageRef = ref(storage, `${user.uid}/Profile.jpeg`);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -65,7 +65,7 @@ function index() {
               uid: user.user.uid,
               photoURL: downloadURL,
             };
-            await setDoc(doc(db, "user", user.user.uid), obj);
+            await setDoc(doc(db, "users", user.user.uid), obj);
             console.log("doc added");
           });
         }

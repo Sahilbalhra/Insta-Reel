@@ -21,7 +21,7 @@ import { Router, useRouter } from "next/router";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Logout"];
 
-const Navbar = () => {
+const Navbar = ({userData}) => {
   //adding logout functionality
   const { logout } = React.useContext(AuthContext);
   const router = useRouter();
@@ -72,7 +72,7 @@ const Navbar = () => {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
                   alt="Remy Sharp"
-                  src="/static/images/avatar/2.jpg"
+                  src={userData?.photoURL}
                   sx={{ margin: "0.5rem" }}
                 />
               </IconButton>
