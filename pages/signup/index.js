@@ -27,13 +27,14 @@ function index() {
     try {
       setLoading(true);
       setError("");
-      //getting user
+      //getting user from auth
       const user = await signup(email, password);
  
-      console.log("Signed Up!");
+      // console.log("Signed Up!");
       //all firebase upload file function see documentation
       //location to store data
-      const storageRef = ref(storage, `${user.uid}/Profile.jpeg`);
+      // console.log(user.user.uid);
+      const storageRef = ref(storage, `${user.user.uid}/Profile.jpeg`);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -59,6 +60,8 @@ function index() {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log("File available at", downloadURL);
+
+            //adding doc to the collection
             let obj = {
               name: name,
               email: email,
@@ -150,7 +153,7 @@ function index() {
       </div>
       <div className="signup-card" style={{ marginTop: "1rem" }}>
         Already Have an Account?{" "}
-        <Link href="/login">
+        <Link href="/login" passHref>
           <span style={{ color: "blue", cursor: "pointer" }}>Login</span>
         </Link>
       </div>

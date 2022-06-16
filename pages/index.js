@@ -23,7 +23,6 @@ export default function Home() {
         />
       </Head>
       {user?.uid ? <Feed /> : <Redirect />}
-      <Feed />
     </div>
   );
 }

@@ -21,7 +21,7 @@ import { Router, useRouter } from "next/router";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Logout"];
 
-const Navbar = ({userData}) => {
+const Navbar = ({ userData }) => {
   //adding logout functionality
   const { logout } = React.useContext(AuthContext);
   const router = useRouter();
@@ -47,19 +47,20 @@ const Navbar = ({userData}) => {
     // console.log("Logged out!");
     router.push("/login");
   };
+  const profileClick = () => {
+    router.push("/profile");
+  };
+  const logoClick = () => {
+    router.push("/");
+  };
 
   return (
     <AppBar position="static" color="transparent" className="navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "flex", md: "flex" } }}
-          >
-            <Image src={insta} height={55} width={300} />
-          </Typography>
+          <Box sx={{ cursor: "pointer" }}>
+            <Image src={insta} height={55} width={300} onClick={logoClick} />
+          </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex" } }}></Box>
 
@@ -93,7 +94,7 @@ const Navbar = ({userData}) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={profileClick}>
                 <Typography textAlign="center">Profile</Typography>
               </MenuItem>
               <MenuItem
